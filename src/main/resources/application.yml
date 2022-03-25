@@ -18,20 +18,20 @@ info:
 spring:
   application:
     name: atlasmundi
+  main:
+    banner-mode: log
 
-    datasource:
-      driverClassName: org.postgresql.Driver
-      hikari:
-        connection-init-sql: set role atlasmundi
+  datasource:
+    driverClassName: org.postgresql.Driver
+    hikari:
+      connection-init-sql: set role atlasmundi
 
-    jpa:
-      database-platform: org.hibernate.dialect.PostgreSQL95Dialect
-      properties:
-        hibernate:
-          format_sql: true
-      hibernate:
-        ddl-auto: create
-        naming:
-          implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
-          physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-      show-sql: true
+  jpa:
+    hibernate:
+      ddl-auto: create
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    database-platform: org.hibernate.dialect.PostgreSQL95Dialect
+    properties:
+      hibernate.jdbc.lob.non_contextual_creation: true

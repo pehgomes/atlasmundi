@@ -27,7 +27,7 @@ public class UserDetailData implements UserDetails {
 
     @Override
     public String getUsername() {
-        return profile.getUsername();
+        return profile.getLogin();
     }
 
     @Override
