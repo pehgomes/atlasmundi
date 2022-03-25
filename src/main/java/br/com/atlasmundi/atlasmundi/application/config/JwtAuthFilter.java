@@ -40,7 +40,7 @@ public class JwtAuthFilter extends UsernamePasswordAuthenticationFilter {
             Profile profile = new ObjectMapper().readValue(request.getInputStream(), Profile.class);
 
             return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-                    profile.getUsername(),
+                    profile.getLogin(),
                     profile.getPassword(),
                     List.of()));
 

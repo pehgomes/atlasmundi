@@ -10,9 +10,11 @@
 
 ### Endpoints
 
-| Method | URI                                           | Description     | Response Status           |
-|--------|-----------------------------------------------|-----------------|---------------------------|
-| `POST` | [<u>`/v1/login`](docs/payload/new-login.json) | create a login. | `201`, `202`, `422`, `500`|
+| Method | URI                                                | Description                  | Response Status            |
+|--------|----------------------------------------------------|------------------------------|----------------------------|
+| `POST` | [<u>`/login`](docs/payload/new-login.json)         | get token if account exists. | `201`, `202`, `422`, `500` |
+| `POST` | [<u>`/v1/profiles`](docs/payload/new-account.json) | create an account.           | `201`, `202`, `422`, `500` |
+
 
 ### Constraints
 

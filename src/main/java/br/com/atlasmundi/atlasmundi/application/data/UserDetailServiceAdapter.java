@@ -18,7 +18,7 @@ public class UserDetailServiceAdapter implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        var user = profileRepository.findByUsername(username)
+        var user = profileRepository.findByLogin(username)
                 .orElseThrow(() -> new UsernameNotFoundException("user with username " + username + " not found"));
 
         return new UserDetailData(user);

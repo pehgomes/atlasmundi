@@ -18,7 +18,12 @@ public class ProfileRepositoryJpa implements ProfileRepository {
     }
 
     @Override
-    public Optional<Profile> findByUsername(String username) {
-        return repositorySpringData.findByUsername(username);
+    public Optional<Profile> findByLogin(String username) {
+        return repositorySpringData.findByLogin(username);
+    }
+
+    @Override
+    public Profile save(Profile profile) {
+        return repositorySpringData.save(profile);
     }
 }
