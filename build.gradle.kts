@@ -32,9 +32,8 @@ dependencies {
     implementation("javax.money:money-api:$javaMoneyVersion")
     implementation("javax.validation:validation-api:2.0.1.Final")
     implementation("com.vladmihalcea:hibernate-types-52:$hibernateTypesVersion")
-
-
-
+    implementation("io.springfox:springfox-swagger2:2.9.2")
+    implementation("io.springfox:springfox-swagger-ui:2.9.2")
 
     compileOnly("org.projectlombok:lombok")
     runtimeOnly("org.postgresql:postgresql")
