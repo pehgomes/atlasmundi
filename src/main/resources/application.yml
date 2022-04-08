@@ -33,8 +33,8 @@ spring:
 
   datasource:
     driverClassName: org.postgresql.Driver
-    hikari:
-      connection-init-sql: set role atlasmundi
+#    hikari:
+#      connection-init-sql: set role atlasmundi
 
   jpa:
     hibernate:
