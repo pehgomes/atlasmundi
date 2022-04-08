@@ -1,3 +1,13 @@
+server:
+  tomcat:
+    max-threads: 600
+  error:
+    include-message: always
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
 management:
   endpoints:
     web:
@@ -28,7 +38,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: create
+#      ddl-auto: create
       naming:
         implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl

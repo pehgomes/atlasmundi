@@ -22,6 +22,7 @@ java {
 
 val springCloudVersion = "Hoxton.SR10"
 val javaMoneyVersion = "1.1"
+val hibernateTypesVersion = "2.4.1"
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
@@ -29,9 +30,15 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.auth0:java-jwt:3.16.0")
     implementation("javax.money:money-api:$javaMoneyVersion")
+    implementation("javax.validation:validation-api:2.0.1.Final")
+    implementation("com.vladmihalcea:hibernate-types-52:$hibernateTypesVersion")
+
+
+
 
     compileOnly("org.projectlombok:lombok")
     runtimeOnly("org.postgresql:postgresql")
+    runtimeOnly("org.flywaydb:flyway-core:7.15.0")
 
     annotationProcessor("org.projectlombok:lombok")
     testImplementation("org.springframework.boot:spring-boot-starter-test")

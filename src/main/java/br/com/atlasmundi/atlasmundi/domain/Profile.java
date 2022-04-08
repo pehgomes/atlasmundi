@@ -50,8 +50,8 @@ public class Profile implements Serializable {
         if (!birthDate.isBefore(OffsetDateTime.now().minusYears(18)))
             throw new RuntimeException("InvalidBirthDate: " + birthDate);
 
-        if (!Util.isValidPhoneNumber(phoneNumber))
-            throw new RuntimeException("InvalidPhoneNumber: " + phoneNumber);
+//        if (!Util.isValidPhoneNumber(phoneNumber))
+//            throw new RuntimeException("InvalidPhoneNumber: " + phoneNumber);
 
         if (name == null || name.isBlank())
             throw new RuntimeException("InvalidName: " + name);
