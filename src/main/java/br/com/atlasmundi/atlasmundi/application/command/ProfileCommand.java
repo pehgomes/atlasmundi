@@ -1,16 +1,16 @@
 package br.com.atlasmundi.atlasmundi.application.command;
 
-import com.sun.istack.NotNull;
 import lombok.*;
 
+import javax.validation.constraints.NotNull;
 import java.time.OffsetDateTime;
 
 
 @Value
+@ToString
+@EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor(force = true, access = AccessLevel.PRIVATE)
-@EqualsAndHashCode
-@ToString
 public class ProfileCommand {
 
     @NotNull

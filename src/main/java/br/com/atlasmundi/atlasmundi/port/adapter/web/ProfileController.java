@@ -2,9 +2,11 @@ package br.com.atlasmundi.atlasmundi.port.adapter.web;
 
 import br.com.atlasmundi.atlasmundi.application.command.ProfileCommand;
 import br.com.atlasmundi.atlasmundi.application.profile.ProfileApplicationService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.net.URI;
 
 @RestController
@@ -17,14 +19,13 @@ public class ProfileController {
         this.profileApplicationService = profileApplicationService;
     }
 
-    @GetMapping
-    public ResponseEntity<Void> getTest() {
-
-        return ResponseEntity.ok().build();
+    @GetMapping("/accounts")
+    public ResponseEntity<Void> logged() {
+        return new ResponseEntity("logged", HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<Void> createProfile(@RequestBody ProfileCommand command) {
+    public ResponseEntity<Void> createProfile(@RequestBody @Valid ProfileCommand command) {
         var id = profileApplicationService.createAccount(command);
         return ResponseEntity.created(URI.create("/v1/profiles/".concat(id.toString()))).build();
     }
