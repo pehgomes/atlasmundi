@@ -5,3 +5,6 @@ spring:
     url: jdbc:postgresql://localhost:5433/atlasmundi
     username: atlasmundi
     password: atlasmundi
+    driverClassName: org.postgresql.Driver
+    hikari:
+      connection-init-sql: set role atlasmundi
