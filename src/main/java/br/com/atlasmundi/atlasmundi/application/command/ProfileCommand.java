@@ -35,6 +35,12 @@ public class ProfileCommand {
     OffsetDateTime birthDate;
 
     @NotNull
-    @ApiModelProperty(value = "account phone number", example = "85999998821")
+    @ApiModelProperty(value = "e-mail", example = "fulano@gmail.com")
+    String email;
+
+    @NotNull
+    @ApiModelProperty(value = "account phone number", example = "85999998821", dataType = "")
     String phoneNumber;
+
+
 }

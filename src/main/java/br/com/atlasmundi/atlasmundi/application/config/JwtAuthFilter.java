@@ -17,7 +17,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class JwtAuthFilter extends UsernamePasswordAuthenticationFilter {
 
@@ -56,6 +58,8 @@ public class JwtAuthFilter extends UsernamePasswordAuthenticationFilter {
             FilterChain chain,
             Authentication authResult) throws IOException, ServletException {
 
+        Map<String, String> map = new HashMap<>();
+
         UserDetailData detail = (UserDetailData) authResult.getPrincipal();
 
         String token = JWT.create()
@@ -63,8 +67,12 @@ public class JwtAuthFilter extends UsernamePasswordAuthenticationFilter {
                 .withExpiresAt(new Date(System.currentTimeMillis() + TOKEN_EXPIRES ))
                 .sign(Algorithm.HMAC512(TOKEN_UUID));
 
-        response.getWriter().write(token);
+        map.put("token", token);
+        map.put("profileId", detail.getProfile().getProfileId().id());
 
+        response.getWriter().write(CustomJacksonObjectMapper.configure().writeValueAsString(map));
+
+        response.setContentType("json");
         response.getWriter().flush();
     }
 }

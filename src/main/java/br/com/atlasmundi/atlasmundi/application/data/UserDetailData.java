@@ -49,4 +49,8 @@ public class UserDetailData implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+    public Profile getProfile() {
+        return profile;
+    }
 }

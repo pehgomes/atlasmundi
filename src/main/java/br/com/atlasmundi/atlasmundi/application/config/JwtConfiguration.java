@@ -45,10 +45,6 @@ public class JwtConfiguration extends WebSecurityConfigurerAdapter {
                 .addFilter(new JwtValidatorFilter(authenticationManager()))
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
-//        /swagger-ui.html
-//                /webjars/**
-//         /v2/**
-//         /swagger-resources/**
     }
 
     @Bean

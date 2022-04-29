@@ -15,4 +15,8 @@ public interface ProfileRepository {
     default ProfileId nextId() {
         return new ProfileId(UUID.randomUUID().toString());
     }
+
+    Optional<Profile> findById(ProfileId profileId);
+
+    Optional<Profile> findByTaxId(String taxId);
 }
