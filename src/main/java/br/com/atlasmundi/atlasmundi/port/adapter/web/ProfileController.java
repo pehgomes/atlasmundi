@@ -2,10 +2,10 @@ package br.com.atlasmundi.atlasmundi.port.adapter.web;
 
 import br.com.atlasmundi.atlasmundi.application.command.ProfileCommand;
 import br.com.atlasmundi.atlasmundi.application.profile.ProfileApplicationService;
+import br.com.atlasmundi.atlasmundi.domain.ProfileId;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,12 +27,26 @@ public class ProfileController {
     @ApiOperation(value = "Create a profile using profile command.",
             produces = "application/json", code = 201)
     public ResponseEntity<Void> createProfile(@RequestBody @Valid @ApiParam ProfileCommand command) {
+
         var id = profileApplicationService.createAccount(command);
+
         return ResponseEntity.created(URI.create("/v1/profiles/".concat(id.toString()))).build();
     }
 
     @GetMapping("/{profileId}")
-    public ResponseEntity<Object> getProfileDetail() {
-        return new ResponseEntity("unavailable ...", HttpStatus.OK);
+    @ApiOperation(value = "Return profile detail.")
+    public ResponseEntity<ProfileData> getProfileDetail(@PathVariable ProfileId profileId) {
+
+        var profileData = profileApplicationService.getProfileDetail(profileId);
+
+        return ResponseEntity.ok(profileData);
+    }
+
+    @PutMapping("/{profileId}")
+    @ApiOperation(value = "Update Profile data.")
+    public ResponseEntity<Void> updateProfile(@PathVariable ProfileId profileId,
+                                              @RequestBody @Valid @ApiParam ProfileCommand command) {
+
+        return ResponseEntity.ok().build();
     }
 }

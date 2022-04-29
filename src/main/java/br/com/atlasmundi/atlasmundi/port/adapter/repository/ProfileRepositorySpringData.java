@@ -9,4 +9,6 @@ import java.util.Optional;
 public interface ProfileRepositorySpringData extends JpaRepository<Profile, ProfileId> {
 
     Optional<Profile> findByLogin(String username);
+
+    Optional<Profile> findByTaxId(String taxId);
 }

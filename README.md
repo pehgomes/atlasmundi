@@ -10,11 +10,19 @@
 
 ### Endpoints
 
-| Method | URI                                                | Description                  | Response Status            |
-|--------|----------------------------------------------------|------------------------------|----------------------------|
-| `POST` | [<u>`/login`](docs/payload/new-login.json)         | get token if account exists. | `201`, `202`, `422`, `500` |
-| `POST` | [<u>`/v1/profiles`](docs/payload/new-account.json) | create an account.           | `201`, `202`, `422`, `500` |
+| Method | URI                                                             | Description                  | Response Status            |
+|--------|-----------------------------------------------------------------|------------------------------|----------------------------|
+| `POST` | [<u>`/login`](docs/payload/new-login.json)                      | get token if account exists. | `201`, `202`, `422`, `500` |
+| `POST` | [<u>`/v1/profiles`](docs/payload/new-account.json)              | create an account.           | `201`, `202`, `422`, `500` |
+| `POST` | [<u>`/v1/profiles/{profilesId}`](docs/payload/new-account.json) | create an account.           | `201`, `202`, `422`, `500` |
 
+#### `/login`
+```json
+{
+  "token": "qweE5f==",
+  "profileId": "2515afd9-b44d-41e2-82f0-8cd6bb75f22f"
+}
+```
 
 ### Constraints
 

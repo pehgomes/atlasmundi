@@ -5,8 +5,10 @@ import br.com.atlasmundi.atlasmundi.application.util.Util;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import java.io.Serializable;
 import java.time.OffsetDateTime;
+import java.util.List;
 
 @Entity
 public class Profile implements Serializable {
@@ -23,14 +25,20 @@ public class Profile implements Serializable {
     @Column(name = "tax_id")
     private String taxId;
 
-    @Column
-    private String name;
+    @Column(name = "name")
+    private String username;
 
     @Column(name = "birth_date")
     private OffsetDateTime birthDate;
 
     @Column(name = "phone_number")
     private String phoneNumber;
+
+    @Column(name = "email")
+    private String email;
+
+    @OneToMany(mappedBy = "requester")
+    private List<Invite> invites;
 
 
     private Profile() {
@@ -42,16 +50,14 @@ public class Profile implements Serializable {
                    String taxId,
                    String name,
                    OffsetDateTime birthDate,
-                   String phoneNumber) {
+                   String phoneNumber,
+                   String email) {
 
         if (!Util.isValidTaxId(taxId))
             throw new RuntimeException("InvalidTaxId: " + taxId);
 
         if (!birthDate.isBefore(OffsetDateTime.now().minusYears(18)))
             throw new RuntimeException("InvalidBirthDate: " + birthDate);
-
-//        if (!Util.isValidPhoneNumber(phoneNumber))
-//            throw new RuntimeException("InvalidPhoneNumber: " + phoneNumber);
 
         if (name == null || name.isBlank())
             throw new RuntimeException("InvalidName: " + name);
@@ -66,12 +72,13 @@ public class Profile implements Serializable {
         setLogin(login);
         setPassword(password);
         setTaxId(taxId);
-        setName(name);
+        setUsername(name);
         setBirthDate(birthDate);
         setPhoneNumber(phoneNumber);
+        setEmail(email);
     }
 
-    public ProfileId uuid() {
+    public ProfileId getProfileId() {
         return profileId;
     }
 
@@ -103,12 +110,12 @@ public class Profile implements Serializable {
         this.taxId = taxId;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public OffsetDateTime getBirthDate() {
@@ -125,5 +132,21 @@ public class Profile implements Serializable {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public List<Invite> getInvites() {
+        return invites;
+    }
+
+    public void setInvites(List<Invite> invites) {
+        this.invites = invites;
     }
 }

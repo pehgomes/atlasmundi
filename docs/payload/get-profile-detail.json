@@ -1,0 +1,27 @@
+{
+  "profileId": "3b480138-5e40-4264-a62d-283648cba09a",
+  "login": "pehgomes",
+  "taxId": "72977031090",
+  "name": "Pedro Henrique Gomes",
+  "birthDate": 917233200.000000000,
+  "phoneNumber": "+5585998321231",
+  "friends": [
+    {
+      "friendId": "14dcb7b6-f0d4-485f-86d6-aa77c8b78382",
+      "name": "João",
+      "online": true
+    },
+    {
+      "friendId": "2515afd9-b44d-41e2-82f0-8cd6bb75f22f",
+      "name": "Chico",
+      "online": false
+    }
+  ],
+  "invites": [
+    {
+      "inviteId": "14dcb7b6-f0d4-485f-86d6-aa77c8b78382",
+      "to": "Mario Massari",
+      "status": "PENDING"
+    }
+  ]
+}

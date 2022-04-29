@@ -1,0 +1,1 @@
+alter table profile add column if not exists email varchar(100);
