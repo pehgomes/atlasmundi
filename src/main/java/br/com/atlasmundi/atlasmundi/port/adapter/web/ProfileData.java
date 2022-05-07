@@ -42,8 +42,8 @@ public class ProfileData {
     @AllArgsConstructor
     @NoArgsConstructor(force = true, access = AccessLevel.PRIVATE)
     public static class InviteData {
-        InviteId friendId;
-        String receiverName;
+        InviteId inviteId;
+        String requesterName;
         InviteStatus status;
     }
 }

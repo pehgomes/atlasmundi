@@ -24,6 +24,16 @@ public class ProfileRepositoryJpa implements ProfileRepository {
     }
 
     @Override
+    public Optional<Profile> findByEmail(String email) {
+        return repositorySpringData.findByEmail(email);
+    }
+
+    @Override
+    public Optional<Profile> findByPhoneNumber(String phoneNumber) {
+        return repositorySpringData.findByPhoneNumber(phoneNumber);
+    }
+
+    @Override
     public Profile save(Profile profile) {
         return repositorySpringData.save(profile);
     }

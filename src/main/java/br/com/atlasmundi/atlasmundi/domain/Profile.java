@@ -2,10 +2,7 @@ package br.com.atlasmundi.atlasmundi.domain;
 
 import br.com.atlasmundi.atlasmundi.application.util.Util;
 
-import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -37,8 +34,11 @@ public class Profile implements Serializable {
     @Column(name = "email")
     private String email;
 
-    @OneToMany(mappedBy = "requester")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "receiver")
     private List<Invite> invites;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "receiver")
+    private List<Friend> friends;
 
 
     private Profile() {
@@ -148,5 +148,13 @@ public class Profile implements Serializable {
 
     public void setInvites(List<Invite> invites) {
         this.invites = invites;
+    }
+
+    public List<Friend> getFriends() {
+        return friends;
+    }
+
+    public void setFriends(List<Friend> friends) {
+        this.friends = friends;
     }
 }
