@@ -11,4 +11,8 @@ public interface ProfileRepositorySpringData extends JpaRepository<Profile, Prof
     Optional<Profile> findByLogin(String username);
 
     Optional<Profile> findByTaxId(String taxId);
+
+    Optional<Profile> findByPhoneNumber(String taxId);
+
+    Optional<Profile> findByEmail(String taxId);
 }

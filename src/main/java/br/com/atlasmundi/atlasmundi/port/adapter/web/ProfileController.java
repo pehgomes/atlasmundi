@@ -2,7 +2,9 @@ package br.com.atlasmundi.atlasmundi.port.adapter.web;
 
 import br.com.atlasmundi.atlasmundi.application.command.ProfileCommand;
 import br.com.atlasmundi.atlasmundi.application.profile.ProfileApplicationService;
+import br.com.atlasmundi.atlasmundi.domain.InviteId;
 import br.com.atlasmundi.atlasmundi.domain.ProfileId;
+import br.com.atlasmundi.atlasmundi.domain.enumeration.InviteStatus;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -46,7 +48,31 @@ public class ProfileController {
     @ApiOperation(value = "Update Profile data.")
     public ResponseEntity<Void> updateProfile(@PathVariable ProfileId profileId,
                                               @RequestBody @Valid @ApiParam ProfileCommand command) {
-
         return ResponseEntity.ok().build();
     }
+
+
+    @PostMapping("/{profileId}/invites/{inviteId}/accept")
+    @ApiOperation(value = "Accept a invite.",
+            produces = "application/json", code = 201)
+    public ResponseEntity<Void> acceptInvite(@PathVariable ProfileId profileId, @PathVariable InviteId inviteId) {
+
+        var id = profileApplicationService.deferInvite(profileId, inviteId, InviteStatus.ACCEPTED);
+
+        return ResponseEntity.created(URI.create("/v1/profiles/".concat(profileId.uuid().toString())
+                .concat("/invites/").concat(id.uuid().toString()).concat("/accept"))).build();
+    }
+
+    @PostMapping("/{profileId}/invites/{inviteId}/refuse")
+    @ApiOperation(value = "Refuse a invite.",
+            produces = "application/json", code = 201)
+    public ResponseEntity<Void> refuseInvite(@PathVariable ProfileId profileId, @PathVariable InviteId inviteId) {
+
+        var id = profileApplicationService.deferInvite(profileId, inviteId, InviteStatus.ACCEPTED);
+
+        return ResponseEntity.created(URI.create("/v1/profiles/".concat(profileId.uuid().toString())
+                .concat("/invites/").concat(id.uuid().toString()).concat("/refuse"))).build();
+    }
+
+
 }

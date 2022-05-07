@@ -9,10 +9,10 @@ import java.time.OffsetDateTime;
 import static javax.persistence.EnumType.STRING;
 
 @Entity
-public class Invite {
+public class Friend {
 
     @EmbeddedId
-    private InviteId inviteId;
+    private FriendId friendId;
 
     @ManyToOne
     @JoinColumn(name = "requester_id")
@@ -30,27 +30,27 @@ public class Invite {
     @NotNull
     private InviteStatus status;
 
-    private Invite() {}
+    private Friend() {}
 
-    public Invite(InviteId inviteId,
+    public Friend(FriendId friendId,
                   Profile requester,
                   Profile receiver,
                   OffsetDateTime occurredOn,
                   InviteStatus status) {
 
-        setInviteId(inviteId);
+        setFriendId(friendId);
         setRequester(requester);
         setReceiver(receiver);
         setOccurredOn(occurredOn);
         setStatus(status);
     }
 
-    public InviteId getInviteId() {
-        return inviteId;
+    public FriendId getFriendId() {
+        return friendId;
     }
 
-    public void setInviteId(InviteId inviteId) {
-        this.inviteId = inviteId;
+    public void setFriendId(FriendId friendId) {
+        this.friendId = friendId;
     }
 
     public Profile getRequester() {
@@ -83,13 +83,5 @@ public class Invite {
 
     public void setStatus(InviteStatus status) {
         this.status = status;
-    }
-
-    public void accept() {
-        setStatus(InviteStatus.ACCEPTED);
-    }
-
-    public void refuse() {
-        setStatus(InviteStatus.REFUSED);
     }
 }

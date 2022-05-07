@@ -10,6 +10,10 @@ public interface ProfileRepository {
 
     Optional<Profile> findByLogin(String username);
 
+    Optional<Profile> findByEmail(String username);
+
+    Optional<Profile> findByPhoneNumber(String username);
+
     Profile save(Profile profile);
 
     default ProfileId nextId() {
