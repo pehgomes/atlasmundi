@@ -24,7 +24,7 @@ jobs:
         distribution: 'temurin'
         heroku_api_key: ${{secrets.HEROKU_API_KEY}}
         heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
-        heroku_email: $${{secrets}}
+        heroku_email: $${{secrets.HEROKU_OWNER_EMAIL}}
     - name: Build with Gradle
       uses: gradle/gradle-build-action@0d13054264b0bb894ded474f08ebb30921341cee
       with:
