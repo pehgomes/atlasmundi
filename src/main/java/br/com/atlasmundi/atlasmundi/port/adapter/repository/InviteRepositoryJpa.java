@@ -29,4 +29,9 @@ public class InviteRepositoryJpa implements InviteRepository {
     public Optional<Invite> findByIdAndReceiver(InviteId inviteId, Profile receiver) {
         return repositorySpringData.findByInviteIdAndReceiver(inviteId, receiver);
     }
+
+    @Override
+    public Optional<Invite> findByIdAndRequester(InviteId inviteId, Profile requester) {
+        return repositorySpringData.findByInviteIdAndRequester(inviteId, requester);
+    }
 }

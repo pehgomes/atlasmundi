@@ -1,0 +1,1 @@
+alter table profile add column if not exists last_latLong varchar(100);

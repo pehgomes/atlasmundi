@@ -16,4 +16,6 @@ public interface InviteRepository {
     Invite save(Invite invite);
 
     Optional<Invite> findByIdAndReceiver(InviteId inviteId, Profile receiver);
+
+    Optional<Invite> findByIdAndRequester(InviteId inviteId, Profile requester);
 }

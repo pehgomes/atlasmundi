@@ -10,4 +10,6 @@ import java.util.Optional;
 public interface InviteRepositorySpringData extends JpaRepository<Invite, InviteId> {
 
     Optional<Invite> findByInviteIdAndReceiver(InviteId inviteId, Profile receiver);
+
+    Optional<Invite> findByInviteIdAndRequester(InviteId inviteId, Profile requester);
 }

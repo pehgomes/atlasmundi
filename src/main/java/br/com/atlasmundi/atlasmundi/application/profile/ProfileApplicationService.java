@@ -50,7 +50,8 @@ public class ProfileApplicationService {
                 command.getName(),
                 command.getBirthDate(),
                 command.getPhoneNumber(),
-                command.getEmail());
+                command.getEmail(),
+                command.getLocation());
 
         profileRepository.save(profile);
 
@@ -62,6 +63,8 @@ public class ProfileApplicationService {
         var profile = profileRepository.findById(profileId)
                 .orElseThrow(() -> new BusinessLogicException(new ProfileNotFound(profileId.toString())));
 
+        var friends = friendRepository.findFriendsByProfile(profile.getProfileId());
+
         return new ProfileData(profile.getProfileId(),
                 profile.getLogin(),
                 profile.getTaxId(),
@@ -69,7 +72,7 @@ public class ProfileApplicationService {
                 profile.getBirthDate(),
                 profile.getPhoneNumber(),
 
-                profile.getFriends().stream()
+                friends.stream()
                         .map(friend -> new ProfileData.FriendData(
                                 friend.getFriendId(),
                                 friend.getRequester().getUsername(),
@@ -90,7 +93,7 @@ public class ProfileApplicationService {
         var profile = profileRepository.findById(profileId)
                 .orElseThrow(() -> new BusinessLogicException(new ProfileNotFound(profileId.toString())));
 
-        var invite = inviteRepository.findByIdAndReceiver(inviteId, profile)
+        var invite = inviteRepository.findByIdAndRequester(inviteId, profile)
                 .orElseThrow(() -> new BusinessLogicException(new InviteNotFoundForCustomer(profileId.toString())));
 
         if (invite.getStatus().equals(InviteStatus.PENDING) && status.equals(InviteStatus.ACCEPTED)) {

@@ -74,5 +74,12 @@ public class ProfileController {
                 .concat("/invites/").concat(id.uuid().toString()).concat("/refuse"))).build();
     }
 
+    @PutMapping("/{profileId}/location")
+    @ApiOperation(value = "Update profile with last location.",
+            produces = "application/json", code = 201)
+    public ResponseEntity<Void> setLocation(@RequestBody @Valid @ApiParam ProfileCommand command) {
+        return ResponseEntity.ok().build();
+    }
+
 
 }

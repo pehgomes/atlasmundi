@@ -42,5 +42,8 @@ public class ProfileCommand {
     @ApiModelProperty(value = "account phone number", example = "85999998821", dataType = "")
     String phoneNumber;
 
+    @ApiModelProperty(value = "account last location", example = "(0.000000, 0.000000)", dataType = "")
+    String location;
+
 
 }
