@@ -50,8 +50,7 @@ public class ProfileApplicationService {
                 command.getName(),
                 command.getBirthDate(),
                 command.getPhoneNumber(),
-                command.getEmail(),
-                command.getLocation());
+                command.getEmail(), command.getLatitude(), command.getLongitude());
 
         profileRepository.save(profile);
 
@@ -138,4 +137,14 @@ public class ProfileApplicationService {
             throw new BusinessLogicException(new PhoneNumberAlreadyInUse(command.getPhoneNumber()));
     }
 
+    public void setLastLocation(ProfileId profileId, ProfileCommand.ProfileCurrentLocation command) {
+
+        var profile = profileRepository.findById(profileId)
+                .orElseThrow(() -> new BusinessLogicException(new ProfileNotFound(profileId.toString())));
+
+        profile.setLatitude(command.getLatitude());
+        profile.setLongitude(command.getLongitude());
+
+        profileRepository.save(profile);
+    }
 }

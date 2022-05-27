@@ -38,9 +38,7 @@ public class ProfileController {
     @GetMapping("/{profileId}")
     @ApiOperation(value = "Return profile detail.")
     public ResponseEntity<ProfileData> getProfileDetail(@PathVariable ProfileId profileId) {
-
         var profileData = profileApplicationService.getProfileDetail(profileId);
-
         return ResponseEntity.ok(profileData);
     }
 
@@ -51,14 +49,11 @@ public class ProfileController {
         return ResponseEntity.ok().build();
     }
 
-
     @PostMapping("/{profileId}/invites/{inviteId}/accept")
     @ApiOperation(value = "Accept a invite.",
             produces = "application/json", code = 201)
     public ResponseEntity<Void> acceptInvite(@PathVariable ProfileId profileId, @PathVariable InviteId inviteId) {
-
         var id = profileApplicationService.deferInvite(profileId, inviteId, InviteStatus.ACCEPTED);
-
         return ResponseEntity.created(URI.create("/v1/profiles/".concat(profileId.uuid().toString())
                 .concat("/invites/").concat(id.uuid().toString()).concat("/accept"))).build();
     }
@@ -67,19 +62,19 @@ public class ProfileController {
     @ApiOperation(value = "Refuse a invite.",
             produces = "application/json", code = 201)
     public ResponseEntity<Void> refuseInvite(@PathVariable ProfileId profileId, @PathVariable InviteId inviteId) {
-
         var id = profileApplicationService.deferInvite(profileId, inviteId, InviteStatus.ACCEPTED);
-
         return ResponseEntity.created(URI.create("/v1/profiles/".concat(profileId.uuid().toString())
                 .concat("/invites/").concat(id.uuid().toString()).concat("/refuse"))).build();
     }
 
     @PutMapping("/{profileId}/location")
     @ApiOperation(value = "Update profile with last location.",
-            produces = "application/json", code = 201)
-    public ResponseEntity<Void> setLocation(@RequestBody @Valid @ApiParam ProfileCommand command) {
+            produces = "application/json")
+    public ResponseEntity<Void> setLocation(
+            @PathVariable ProfileId profileId,
+            @RequestBody @Valid @ApiParam ProfileCommand.ProfileCurrentLocation command) {
+            profileApplicationService.setLastLocation(profileId, command);
         return ResponseEntity.ok().build();
     }
-
 
 }

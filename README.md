@@ -10,16 +10,22 @@
 
 ### Endpoints
 
-| Method | URI                                                                    | Description                  | Response Status            |
-|--------|------------------------------------------------------------------------|------------------------------|----------------------------|
-| `POST` | [<u>`/login`](docs/payload/new-login.json)                             | get token if account exists. | `201`, `202`, `422`, `500` |
-| `POST` | [<u>`/v1/profiles`](docs/payload/new-account.json)                     | create an account.           | `201`, `202`, `422`, `500` |
-| `POST` | [<u>`/v1/profiles/{profilesId}`](docs/payload/get-profile-detail.json) | create an account.           | `201`, `202`, `422`, `500` |
+| Method | URI                                                                 | Auth           | Description                  | Response Status            |
+|--------|---------------------------------------------------------------------|----------------|------------------------------|----------------------------|
+| `POST` | [<u>`/login`](docs/payload/new-login.json)                          | `no`           | get token if account exists. | `201`, `202`, `422`, `500` |
+| `POST` | [<u>`/v1/profiles`](docs/payload/new-account.json)                  | `Bearer token` | create an account.         | `201`, `202`, `422`, `500` |
+| `GET`  | [<u>`/v1/profiles/{profilesId}`](docs/payload/get-profile-detail.json)|  `Bearer token`              | return a profile.          | `200`, `422`, `500`        |
+| `PUT`  | [<u>`/v1/profiles/{profilesId}`](docs/payload/new-account.json)    |     `Bearer token`           | update an account.         | `200`, `422`, `500`        |
+| `POST` | [<u>`/v1/profiles/{profileId}/invites/{inviteId}/accept`]()        |     `Bearer token`           | accept a invite.           | `201`, `422`, `500`        |
+| `POST` | [<u>`/v1/profiles/{profileId}/invites/{inviteId}/refuse`]()         |    `Bearer token`            | refuse a invite.           | `201`, `422`, `500`        |
+| `PUT`  | [<u>`/v1/profiles/{profileId}/location`](docs/payload/set-location.json)| `Bearer token`               | set last location profile. | `200`, `422`, `500`        |
+
+
 
 #### `/login`
 ```json
 {
-  "token": "qweE5f==",
+  "token": "Bearer eyQweE5f==",
   "profileId": "2515afd9-b44d-41e2-82f0-8cd6bb75f22f"
 }
 ```
