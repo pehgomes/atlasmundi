@@ -40,8 +40,12 @@ public class Profile implements Serializable {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "receiver")
     private List<Friend> friends;
 
-    @Column(name = "last_latLong")
-    private String location;
+    @Column
+    private Float latitude;
+
+    @Column
+    private Float longitude;
+
 
     private Profile() {
     }
@@ -54,7 +58,7 @@ public class Profile implements Serializable {
                    OffsetDateTime birthDate,
                    String phoneNumber,
                    String email,
-                   String location) {
+                   Float latitude, Float longitude) {
 
         if (!Util.isValidTaxId(taxId))
             throw new RuntimeException("InvalidTaxId: " + taxId);
@@ -79,7 +83,8 @@ public class Profile implements Serializable {
         setBirthDate(birthDate);
         setPhoneNumber(phoneNumber);
         setEmail(email);
-        setLocation(location);
+        setLatitude(latitude);
+        setLongitude(longitude);
     }
 
     public ProfileId getProfileId() {
@@ -162,11 +167,19 @@ public class Profile implements Serializable {
         this.friends = friends;
     }
 
-    public String getLocation() {
-        return location;
+    public Float getLatitude() {
+        return latitude;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setLongitude(Float longitude) {
+        this.longitude = longitude;
+    }
+
+    public Float getLongitude() {
+        return longitude;
+    }
+
+    public void setLatitude(Float latitude) {
+        this.latitude = latitude;
     }
 }

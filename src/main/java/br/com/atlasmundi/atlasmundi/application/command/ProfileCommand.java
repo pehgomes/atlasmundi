@@ -42,8 +42,26 @@ public class ProfileCommand {
     @ApiModelProperty(value = "account phone number", example = "85999998821", dataType = "")
     String phoneNumber;
 
-    @ApiModelProperty(value = "account last location", example = "(0.000000, 0.000000)", dataType = "")
-    String location;
+    @ApiModelProperty(value = "account last latitue", example = "-2.1300360", dataType = "Float")
+    Float latitude;
 
+    @ApiModelProperty(value = "account last longitue", example = "1.245000", dataType = "Float")
+    Float longitude;
+
+    @Value
+    @ToString
+    @EqualsAndHashCode
+    @AllArgsConstructor
+    @NoArgsConstructor(force = true, access = AccessLevel.PRIVATE)
+    public static class ProfileCurrentLocation {
+
+        @ApiModelProperty(value = "account last latitue", example = "-2.1300360", dataType = "Float")
+        @NotNull
+        Float latitude;
+
+        @ApiModelProperty(value = "account last longitue", example = "1.245000", dataType = "Float")
+        @NotNull
+        Float longitude;
+    }
 
 }
