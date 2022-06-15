@@ -62,7 +62,7 @@ public class ProfileApplicationService {
         var profile = profileRepository.findById(profileId)
                 .orElseThrow(() -> new BusinessLogicException(new ProfileNotFound(profileId.toString())));
 
-        var friends = friendRepository.findFriendsByProfile(profile.getProfileId());
+        var friends = profile.getFriends();
 
         return new ProfileData(profile.getProfileId(),
                 profile.getLogin(),

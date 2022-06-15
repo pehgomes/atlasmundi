@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.net.URI;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/v1/profiles")
@@ -27,12 +29,12 @@ public class ProfileController {
 
     @PostMapping
     @ApiOperation(value = "Create a profile using profile command.",
-            produces = "application/json", code = 201)
-    public ResponseEntity<Void> createProfile(@RequestBody @Valid @ApiParam ProfileCommand command) {
+            produces = "application/json", response = ProfileId.class, code = 201)
+    public ResponseEntity<Map> createProfile(@RequestBody @Valid @ApiParam ProfileCommand command) {
 
         var id = profileApplicationService.createAccount(command);
 
-        return ResponseEntity.created(URI.create("/v1/profiles/".concat(id.toString()))).build();
+        return ResponseEntity.ok(Map.of("profileId", id.uuid()));
     }
 
     @GetMapping("/{profileId}")

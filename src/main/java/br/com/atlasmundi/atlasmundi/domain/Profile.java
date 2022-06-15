@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.OffsetDateTime;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Profile implements Serializable {
@@ -37,8 +38,8 @@ public class Profile implements Serializable {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "receiver")
     private List<Invite> invites;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "receiver")
-    private List<Friend> friends;
+    @OneToMany( mappedBy="requester", cascade=CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private Set<Friend> friends;
 
     @Column
     private Float latitude;
@@ -159,11 +160,11 @@ public class Profile implements Serializable {
         this.invites = invites;
     }
 
-    public List<Friend> getFriends() {
+    public Set<Friend> getFriends() {
         return friends;
     }
 
-    public void setFriends(List<Friend> friends) {
+    public void setFriends(Set<Friend> friends) {
         this.friends = friends;
     }
 
