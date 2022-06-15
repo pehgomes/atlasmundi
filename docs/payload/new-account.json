@@ -1,3 +1,5 @@
+-- BODY
+
 {
   "taxId": "72977031090",
   "name": "Pedro Henrique Gomes",
@@ -6,4 +8,10 @@
   "birthDate": "1999-01-25T00:00:00.000-03:00",
   "email": "fulano@gmail.com",
   "phoneNumber": "+5585998321231",
+}
+
+-- RESPONSE
+
+{
+  "profileId": "c46b9eaa-6905-4950-9eab-5b5a05492a5e"
 }

@@ -10,6 +10,6 @@ import java.util.UUID;
 
 public interface FriendRepositorySpringData extends JpaRepository<Friend, FriendId> {
 
-    @Query(value = "SELECT f FROM friend f WHERE f.requester_id = :profileId OR f.receiver_id = :profileId ", nativeQuery = true)
+    @Query(value = "SELECT f.* FROM friend f WHERE f.requester_id = :profileId OR f.receiver_id = :profileId ", nativeQuery = true)
     List<Friend> findByRequesterOrReceiver(UUID profileId);
 }
