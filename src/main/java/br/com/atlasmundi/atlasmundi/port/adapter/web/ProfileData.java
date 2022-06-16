@@ -34,6 +34,7 @@ public class ProfileData {
         FriendId friendId;
         String name;
         Boolean online;
+        String distance;
     }
 
     @Value
