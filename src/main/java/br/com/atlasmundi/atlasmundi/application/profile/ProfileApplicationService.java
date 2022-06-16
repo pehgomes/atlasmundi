@@ -3,11 +3,9 @@ package br.com.atlasmundi.atlasmundi.application.profile;
 import br.com.atlasmundi.atlasmundi.application.command.ProfileCommand;
 import br.com.atlasmundi.atlasmundi.application.exception.*;
 import br.com.atlasmundi.atlasmundi.application.util.Util;
-import br.com.atlasmundi.atlasmundi.domain.Friend;
-import br.com.atlasmundi.atlasmundi.domain.InviteId;
-import br.com.atlasmundi.atlasmundi.domain.Profile;
-import br.com.atlasmundi.atlasmundi.domain.ProfileId;
+import br.com.atlasmundi.atlasmundi.domain.*;
 import br.com.atlasmundi.atlasmundi.domain.enumeration.InviteStatus;
+import br.com.atlasmundi.atlasmundi.domain.helper.LocationHelper;
 import br.com.atlasmundi.atlasmundi.domain.repository.FriendRepository;
 import br.com.atlasmundi.atlasmundi.domain.repository.InviteRepository;
 import br.com.atlasmundi.atlasmundi.domain.repository.ProfileRepository;
@@ -62,7 +60,7 @@ public class ProfileApplicationService {
         var profile = profileRepository.findById(profileId)
                 .orElseThrow(() -> new BusinessLogicException(new ProfileNotFound(profileId.toString())));
 
-        var friends = profile.getFriends();
+        var friends = profileRepository.findFriendsFromProfile(profile.getProfileId());
 
         return new ProfileData(profile.getProfileId(),
                 profile.getLogin(),
@@ -73,9 +71,12 @@ public class ProfileApplicationService {
 
                 friends.stream()
                         .map(friend -> new ProfileData.FriendData(
-                                friend.getFriendId(),
-                                friend.getRequester().getUsername(),
-                                false
+                                new FriendId(friend.getProfileId().uuid().toString()),
+                                friend.getUsername(),
+                                LocationHelper.getDistanceBetween(profile.getLatitude(), profile.getLongitude(),
+                                        friend.getLatitude(), friend.getLongitude()).doubleValue() < 3,
+                                LocationHelper.getDistanceBetween(profile.getLatitude(), profile.getLongitude(),
+                                        friend.getLatitude(), friend.getLongitude()) + " km de distancia voce"
                         )).collect(Collectors.toList()),
 
                 profile.getInvites().stream()
