@@ -148,4 +148,23 @@ public class ProfileApplicationService {
 
         profileRepository.save(profile);
     }
+
+    public void updateProfile(ProfileId profileId, ProfileCommand command) {
+        this.validUniqueResultsProfile(command);
+
+        var profile = profileRepository.findById(profileId)
+                .orElseThrow(() -> new BusinessLogicException(new ProfileNotFound(profileId.toString())));
+
+        profile.setBirthDate(command.getBirthDate());
+        profile.setEmail(command.getEmail());
+        profile.setLatitude(command.getLatitude());
+        profile.setLongitude(command.getLongitude());
+        profile.setLogin(command.getLogin());
+        profile.setPhoneNumber(command.getPhoneNumber());
+        profile.setTaxId(command.getTaxId());
+        profile.setPassword(command.getPassword());
+        profile.setUsername(command.getName());
+
+        profileRepository.save(profile);
+    }
 }

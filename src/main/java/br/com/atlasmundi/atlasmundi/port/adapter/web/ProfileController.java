@@ -48,6 +48,7 @@ public class ProfileController {
     @ApiOperation(value = "Update Profile data.")
     public ResponseEntity<Void> updateProfile(@PathVariable ProfileId profileId,
                                               @RequestBody @Valid @ApiParam ProfileCommand command) {
+        profileApplicationService.updateProfile(profileId, command);
         return ResponseEntity.ok().build();
     }
 
