@@ -1,5 +1,5 @@
 {
-  "profileId": "3b480138-5e40-4264-a62d-283648cba09a",
+  "profileId": "238615c6-dca6-44a3-9bb3-95aaf7524e31",
   "login": "pehgomes",
   "taxId": "72977031090",
   "name": "Pedro Henrique Gomes",
@@ -7,21 +7,17 @@
   "phoneNumber": "+5585998321231",
   "friends": [
     {
-      "friendId": "14dcb7b6-f0d4-485f-86d6-aa77c8b78382",
-      "name": "João",
-      "online": true
+      "friendId": "ef3239d5-6ccb-41f4-b421-901438cc643c",
+      "name": "Jenny Monteiro Gomes",
+      "online": true,
+      "distance": "0.243 km de distancia voce"
     },
     {
-      "friendId": "2515afd9-b44d-41e2-82f0-8cd6bb75f22f",
-      "name": "Chico",
-      "online": false
+      "friendId": "0da89105-95c8-4440-b7c4-6d91e23a8136",
+      "name": "Amora",
+      "online": true,
+      "distance": "0.243 km de distancia voce"
     }
   ],
-  "invites": [
-    {
-      "inviteId": "14dcb7b6-f0d4-485f-86d6-aa77c8b78382",
-      "to": "Mario Massari",
-      "status": "PENDING"
-    }
-  ]
+  "invites": []
 }
